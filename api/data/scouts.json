@@ -1,0 +1,82 @@
+
+[
+    {
+        "id": 1,
+        "name": "Erwin Smith",
+        "desc": "Respected Commander",
+        "gradRank": 2
+    },
+    {
+        "id": 2,
+        "name": "Levi Ackermann",
+        "desc": "Squad Captain",
+        "gradRank": 1        
+    },
+    {
+        "id": 3,
+        "name": "Hange Zoe",
+        "desc": "Crazy Genius",
+        "gradRank": 3
+    },
+    {
+        "id": 4,
+        "name": "Eren Yaeger",
+        "desc": "Suicidal Maniac",
+        "gradRank": 5
+
+    },
+    {
+        "id": 5,
+        "name": "Mikasa Ackermann",
+        "desc": "Lethal Killer",
+        "gradRank": 1
+    },
+    {
+        "id": 6,
+        "name": "Armin Arlert",
+        "desc": "Strategic Genius",
+        "gradRank": 13
+    },
+    {
+        "id": 7,
+        "name": "Sasha Braus",
+        "desc": "Potato Girl",
+        "gradRank": 9
+    },
+    {
+        "id": 8,
+        "name": "Jean Kirschtein",
+        "desc": "Horse Face",
+        "gradRank": 6
+    },
+    {
+        "id": 9,
+        "name": "Conny Springer",
+        "desc": "Shorty",
+        "gradRank": 8
+    },
+    {
+        "id": 10,
+        "name": "Ymir",
+        "desc": "Dancing Titan",
+        "gradRank": 11
+    },
+    {
+        "id": 11,
+        "name": "Historia Reiss",
+        "desc": "Royal Blood",
+        "gradRank": 10
+    },
+    {
+        "id": 12,
+        "name": "Reiner Braun",
+        "desc": "Warrior",
+        "gradRank": 2
+    },
+    {
+        "id": 13,
+        "name": "Bertholdt Hoover",
+        "desc": "Reiner's Lacky",
+        "gradRank": 3        
+    }
+]
