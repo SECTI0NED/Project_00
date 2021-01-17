@@ -24,10 +24,10 @@ export default class SearchScouts extends Component {
                             Name
                         </button>
                         <button 
-                            className={'sort-by dropdown-item ' + (this.props.orderBy === 'rank' ? 'active' : '')}
-                            onClick={ e => this.props.changeOrder('rank', this.props.orderDir)}
+                            className={'sort-by dropdown-item ' + (this.props.orderBy === 'gradRank' ? 'active' : '')}
+                            onClick={ e => this.props.changeOrder('gradRank', this.props.orderDir)}
                             href="#">
-                            Rank
+                           Graduation Rank
                         </button>
                         <div role="separator" className="dropdown-divider"></div>
                         <button 

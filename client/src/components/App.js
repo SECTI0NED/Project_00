@@ -58,24 +58,25 @@ class App extends Component {
   render() {
 	let filteredData = this.state.data;
 	let orderDir = this.state.orderDir === 'asc'? 1 : -1;
-
-	filteredData.sort((firstItem, secondItem) => {
-
-		if(this.state.orderBy === 'name'){
-			if(firstItem[this.state.orderBy].toLowerCase() < secondItem[this.state.orderBy].toLowerCase() ){
+	const NAME = 'name';
+	const RANK = 'gradRank';
+	
+	if(this.state.orderBy === NAME ) {
+		filteredData.sort((firstItem, secondItem) => {
+			if(firstItem[NAME].toLowerCase() < secondItem[NAME].toLowerCase() ){
 				return -1 * orderDir;
 			} else {
 				return 1 * orderDir;
 			}
-		} else {
-			if(firstItem[this.state.orderBy] < secondItem[this.state.orderBy]){
-				return (firstItem - secondItem) * orderDir;
-			} else {
-				return (secondItem - firstItem) * orderDir;
-			}
-		}
-		
-	})
+		})
+	
+	}
+
+	if(this.state.orderBy === RANK) {
+		filteredData.sort((firstItem, secondItem) => 
+		(firstItem[RANK] - secondItem[RANK]) * orderDir)
+	}
+
     return (
 	  <main className="background fullscreen">
 		<div className="title ">
