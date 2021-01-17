@@ -10,12 +10,22 @@ class App extends Component {
     super(props);
 	this.state = { 
 		data: [],
-		formDisplay: false
+		formDisplay: false,
+		orderBy: "name",
+		orderDir: "asc"
 	};
     this.callAPI = this.callAPI.bind(this);
 	this.clearRes = this.clearRes.bind(this);
 	this.deleteScout= this.deleteScout.bind(this);
 	this.toggleForm=this.toggleForm.bind(this);
+	this.changeOrder=this.changeOrder.bind(this);
+  }
+
+  changeOrder(order, direction){
+	this.setState({
+		orderBy: order, 
+		orderDir: direction
+	})
   }
 
   componentDidMount() {
@@ -43,7 +53,29 @@ class App extends Component {
   toggleForm() {
 	  this.setState({formDisplay: !this.state.formDisplay})
   }
+
+
   render() {
+	let filteredData = this.state.data;
+	let orderDir = this.state.orderDir === 'asc'? 1 : -1;
+
+	filteredData.sort((firstItem, secondItem) => {
+
+		if(this.state.orderBy === 'name'){
+			if(firstItem[this.state.orderBy].toLowerCase() < secondItem[this.state.orderBy].toLowerCase() ){
+				return -1 * orderDir;
+			} else {
+				return 1 * orderDir;
+			}
+		} else {
+			if(firstItem[this.state.orderBy] < secondItem[this.state.orderBy]){
+				return (firstItem - secondItem) * orderDir;
+			} else {
+				return (secondItem - firstItem) * orderDir;
+			}
+		}
+		
+	})
     return (
 	  <main className="background fullscreen">
 		<div className="title ">
@@ -55,11 +87,14 @@ class App extends Component {
 					formDisplay={this.state.formDisplay}
 					toggleForm={this.toggleForm}
 				/>
-				<SearchScouts/>
+				<SearchScouts
+					orderBy={this.state.orderBy}
+					orderDir={this.state.orderDir}
+					changeOrder={this.changeOrder}/>
 				<ListScouts 
-					data={this.state.data}
-					deleteScout={this.deleteScout}/>
-				
+					data={filteredData}
+					deleteScout={this.deleteScout}
+				/>	
 			</div>
 		</div>
       </main>

@@ -17,8 +17,7 @@ export default class ListScouts extends Component {
                 <div>Name: <b>{scout.name}</b></div>
                 <div>Description: <b>{scout.desc}</b></div>
                 <div>Graduation Rank: <b>{scout.gradRank}</b></div>  
-                </Card>
-            <br></br>
+                </Card>   
             </div>)
         })
         return (

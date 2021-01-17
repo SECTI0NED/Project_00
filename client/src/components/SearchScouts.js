@@ -8,8 +8,39 @@ export default class SearchScouts extends Component {
                 <div className="search">
                     <div className="search-bar">
                         <Form.Control type="text"></Form.Control>
-                    </div>     
-                    <button className="sort-btn"><b>Sort By</b></button>         
+                    </div>
+                    <button 
+                        className="sort-btn dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><b>Sort By:</b></button>
+                    <div className="sort-menu dropdown-menu dropdown-menu-right">
+                        <button 
+                            className={'sort-by dropdown-item ' + (this.props.orderBy === 'name' ? 'active' : '')}
+                            onClick={ e => this.props.changeOrder('name', this.props.orderDir)}
+                            href="#">
+                            Name
+                        </button>
+                        <button 
+                            className={'sort-by dropdown-item ' + (this.props.orderBy === 'rank' ? 'active' : '')}
+                            onClick={ e => this.props.changeOrder('rank', this.props.orderDir)}
+                            href="#">
+                            Rank
+                        </button>
+                        <div role="separator" className="dropdown-divider"></div>
+                        <button 
+                            className={'sort-by dropdown-item ' + (this.props.orderDir === 'asc' ? 'active' : '')}
+                            onClick={ e => this.props.changeOrder(this.props.orderBy, 'asc')}>
+                            Ascending
+                        </button>
+                        <button 
+                            className={'sort-by dropdown-item ' + (this.props.orderDir === 'desc' ? 'active' : '')}
+                            onClick={ e => this.props.changeOrder(this.props.orderBy, 'desc')}>
+                            Descending
+                        </button>
+                    </div>         
                 </div>
             </div>
         )
