@@ -82,7 +82,8 @@ class App extends Component {
 		}).filter(eachItem => { 
 			return ( 
 			eachItem[NAME].toLowerCase().includes(this.state.queryText.toLowerCase()) ||
-			eachItem[DESC].toLowerCase().includes(this.state.queryText.toLowerCase())
+			eachItem[DESC].toLowerCase().includes(this.state.queryText.toLowerCase()) ||
+			eachItem[RANK].toString().includes(parseInt(this.state.queryText))
 			)
 		})
 
