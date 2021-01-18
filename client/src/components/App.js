@@ -12,13 +12,19 @@ class App extends Component {
 		data: [],
 		formDisplay: false,
 		orderBy: "name",
-		orderDir: "asc"
+		orderDir: "asc",
+		queryText: ""
 	};
     this.callAPI = this.callAPI.bind(this);
 	this.clearRes = this.clearRes.bind(this);
-	this.deleteScout= this.deleteScout.bind(this);
-	this.toggleForm=this.toggleForm.bind(this);
-	this.changeOrder=this.changeOrder.bind(this);
+	this.deleteScout = this.deleteScout.bind(this);
+	this.toggleForm = this.toggleForm.bind(this);
+	this.changeOrder = this.changeOrder.bind(this);
+	this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(e) {
+	  this.setState({queryText: e.target.value})
   }
 
   changeOrder(order, direction){
@@ -59,23 +65,26 @@ class App extends Component {
 	let filteredData = this.state.data;
 	let orderDir = this.state.orderDir === 'asc'? 1 : -1;
 	const NAME = 'name';
+	const DESC = 'desc';
 	const RANK = 'gradRank';
-	
-	if(this.state.orderBy === NAME ) {
-		filteredData.sort((firstItem, secondItem) => {
-			if(firstItem[NAME].toLowerCase() < secondItem[NAME].toLowerCase() ){
-				return -1 * orderDir;
-			} else {
-				return 1 * orderDir;
-			}
-		})
-	
-	}
 
-	if(this.state.orderBy === RANK) {
-		filteredData.sort((firstItem, secondItem) => 
-		(firstItem[RANK] - secondItem[RANK]) * orderDir)
-	}
+		filteredData = filteredData.sort((firstItem, secondItem) => {
+			if(this.state.orderBy === RANK) {
+				return (firstItem[RANK] - secondItem[RANK]) * orderDir
+			} else {
+				if(firstItem[NAME].toLowerCase() < secondItem[NAME].toLowerCase()){
+					return -1 * orderDir;
+				} else {
+					return 1 * orderDir;
+				}
+			}
+		
+		}).filter(eachItem => { 
+			return ( 
+			eachItem[NAME].toLowerCase().includes(this.state.queryText.toLowerCase()) ||
+			eachItem[DESC].toLowerCase().includes(this.state.queryText.toLowerCase())
+			)
+		})
 
     return (
 	  <main className="background fullscreen">
@@ -91,7 +100,8 @@ class App extends Component {
 				<SearchScouts
 					orderBy={this.state.orderBy}
 					orderDir={this.state.orderDir}
-					changeOrder={this.changeOrder}/>
+					changeOrder={this.changeOrder}
+					handleSearch={this.handleSearch}/>
 				<ListScouts 
 					data={filteredData}
 					deleteScout={this.deleteScout}

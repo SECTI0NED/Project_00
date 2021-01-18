@@ -7,7 +7,10 @@ export default class SearchScouts extends Component {
             <div className="card bg-dark">
                 <div className="search">
                     <div className="search-bar">
-                        <Form.Control type="text"></Form.Control>
+                        <Form.Control 
+                            type="text"
+                            onChange={this.props.handleSearch}
+                        ></Form.Control>
                     </div>
                     <button 
                         className="sort-btn dropdown-toggle"
