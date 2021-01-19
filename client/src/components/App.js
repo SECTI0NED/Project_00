@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
 	this.state = { 
 		data: [],
+		lastId: 0,
 		formDisplay: false,
 		orderBy: "name",
 		orderDir: "asc",
@@ -21,6 +22,7 @@ class App extends Component {
 	this.toggleForm = this.toggleForm.bind(this);
 	this.changeOrder = this.changeOrder.bind(this);
 	this.handleSearch = this.handleSearch.bind(this);
+	this.addScout = this.addScout.bind(this);
   }
 
   handleSearch(e) {
@@ -35,15 +37,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-	  this.callAPI()
+	  this.callAPI()	 
   }
 
   callAPI() {
 	  fetch("http://localhost:9000/testAPI")
 	  .then(res => res.json())
-	  .then(res => this.setState({data: res}))
+	  .then(res => {
+		let id = 0;
+		res.map(() => id = id + 1)
+		this.setState({
+			data: res,
+			lastId: id
+		})
+	  })
 	  .catch(err => err);
-	
   }
 
   clearRes() {
@@ -60,8 +68,18 @@ class App extends Component {
 	  this.setState({formDisplay: !this.state.formDisplay})
   }
 
-
+  addScout(scout){
+	  let temp = this.state.data;
+	  const nextId = this.state.lastId + 1
+	  scout.id = nextId;
+	  temp.unshift(scout);
+	  this.setState({
+		  data: temp,
+		  lastId: nextId
+	  })
+  }
   render() {
+
 	let filteredData = this.state.data;
 	let orderDir = this.state.orderDir === 'asc'? 1 : -1;
 	const NAME = 'name';
@@ -97,6 +115,7 @@ class App extends Component {
 				<AddScouts 
 					formDisplay={this.state.formDisplay}
 					toggleForm={this.toggleForm}
+					addScout={this.addScout}
 				/>
 				<SearchScouts
 					orderBy={this.state.orderBy}

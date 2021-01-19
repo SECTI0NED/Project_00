@@ -13,7 +13,9 @@ export default class ListScouts extends Component {
                 <div className="btn-align"> 
                     <span onClick={()=>this.props.deleteScout(scout)}><FaTimes className="delete" /></span>
                 </div>
-                <img src={images[imgIndex]} alt={scout.name} className="image"></img>
+                <img src={scout.id <= this.props.data.length ? images[imgIndex] : ''} 
+                    alt={scout.name} className="image">
+                </img>
                 <div>Name: <b>{scout.name}</b></div>
                 <div>Description: <b>{scout.desc}</b></div>
                 <div>Graduation Rank: <b>{scout.gradRank}</b></div>  
