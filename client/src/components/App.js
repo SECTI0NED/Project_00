@@ -70,7 +70,7 @@ class App extends Component {
 
   addScout(scout){
 	  let temp = this.state.data;
-	  const nextId = this.state.lastId + 1
+	  let nextId = this.state.lastId + 1
 	  scout.id = nextId;
 	  temp.unshift(scout);
 	  this.setState({
