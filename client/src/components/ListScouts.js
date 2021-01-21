@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Card} from "react-bootstrap"
-import {images} from "./Images" 
+import {images, emptyProfile, DEFAULT_SCOUTS_AMOUNT} from "./Images" 
 import {FaTimes} from "react-icons/fa";
 
 export default class ListScouts extends Component {
@@ -13,7 +13,7 @@ export default class ListScouts extends Component {
                 <div className="btn-align"> 
                     <span onClick={()=>this.props.deleteScout(scout)}><FaTimes className="delete" /></span>
                 </div>
-                <img src={scout.id <= this.props.data.length ? images[imgIndex] : ''} 
+                <img src={scout.id <= DEFAULT_SCOUTS_AMOUNT ? images[imgIndex] : emptyProfile} 
                     alt={scout.name} className="image">
                 </img>
                 <div>Name: <b>{scout.name}</b></div>

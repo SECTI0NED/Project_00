@@ -11,6 +11,9 @@ import reiner from "../images/reiner.png"
 import sasha from "../images/sasha.png"
 import ymir from "../images/ymir.jpg"
 import eren from "../images/eren.png"
+import empty from "../images/_empty.png"
+
+export const DEFAULT_SCOUTS_AMOUNT = 13
 
 export const images = [
     erwin,
@@ -27,4 +30,9 @@ export const images = [
     reiner,
     bertholdt
 ]
-export default images
+
+export const emptyProfile = empty
+
+export default images;
+
+
